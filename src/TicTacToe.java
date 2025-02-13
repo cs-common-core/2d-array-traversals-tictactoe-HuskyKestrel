@@ -7,17 +7,27 @@ public class TicTacToe {
         currentPlayer = 1;
     }
 
-    public void play(int row, int col) {
-        if(board[row][col] != 0) {
+    public boolean play(int row, int col) {
+        if (row > 3 || col > 3)
+        {
+            System.out.println("Not in bounds");
+            return false;
+        }
+        else if(board[row][col] != 0) {
             System.out.println("Cell already occupied");
-            return;
+            return false;
         } else {
             board[row][col] = currentPlayer;
+            if (!isGameOver())
+            {
             if(currentPlayer == 1) {
                 currentPlayer = 2;
             } else {
                 currentPlayer = 1;
             }
+            }
+            return true;
+            
         }
     }
 
